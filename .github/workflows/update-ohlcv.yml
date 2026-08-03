@@ -1,0 +1,64 @@
+name: Update OHLCV data
+
+on:
+  schedule:
+    # Weekdays after US market close. 22:30 UTC = 6:30pm ET during DST / 5:30pm ET standard.
+    - cron: '30 22 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Python dependencies
+        run: python -m pip install --upgrade pip pandas yfinance
+      - name: Refresh large-cap universe
+        run: python scripts/build_large_cap_watchlist.py
+      - name: Refresh last 1 year OHLCV and metrics
+        run: python scripts/update_ohlcv.py
+      - name: Commit data changes
+        run: |
+          if git diff --quiet src/watchlist.json public/data/watchlist.json public/data/ohlcv_1y.csv public/data/latest_metrics.json; then
+            echo "No market data changes"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add src/watchlist.json public/data/watchlist.json public/data/ohlcv_1y.csv public/data/latest_metrics.json
+            git commit -m "chore: update daily OHLCV data"
+            git push
+          fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install app dependencies
+        run: npm ci
+      - name: Build app
+        run: npm run build
+      - name: Build Vercel output
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          mkdir -p .vercel
+          printf '{"orgId":"%s","projectId":"%s","projectName":"ishva-large-cap-scanner"}\n' "$VERCEL_ORG_ID" "$VERCEL_PROJECT_ID" > .vercel/project.json
+          npx --yes vercel@latest pull --yes --environment=production --token "$VERCEL_TOKEN"
+          npx --yes vercel@latest build --prod --token "$VERCEL_TOKEN"
+      - name: Deploy updated static app to Vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          DEPLOY_OUTPUT=$(npx --yes vercel@latest deploy --prebuilt --prod --token "$VERCEL_TOKEN")
+          echo "$DEPLOY_OUTPUT"
+          DEPLOY_URL=$(echo "$DEPLOY_OUTPUT" | grep -Eo 'https://[^ ]+\.vercel\.app' | tail -n 1)
+          test -n "$DEPLOY_URL"
+          npx --yes vercel@latest alias set "$DEPLOY_URL" ishva-large-cap-scanner.vercel.app --token "$VERCEL_TOKEN"
