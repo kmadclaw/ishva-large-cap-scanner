@@ -600,7 +600,7 @@
     "sector": "Technology",
     "country": "United States",
     "exchange": "NASDAQ",
-    "marketCap": 245447878654,
+    "marketCap": 245158519587,
     "universeSource": "S&P 500 + NASDAQ",
     "nextEarningsDate": ""
   },
@@ -1408,17 +1408,6 @@
     "nextEarningsDate": ""
   },
   {
-    "symbol": "ADBE",
-    "company": "Adobe Inc. Common Stock",
-    "industry": "Computer Software: Prepackaged Software",
-    "sector": "Technology",
-    "country": "United States",
-    "exchange": "NASDAQ",
-    "marketCap": 95674275000,
-    "universeSource": "S&P 500 + NASDAQ",
-    "nextEarningsDate": ""
-  },
-  {
     "symbol": "HCA",
     "company": "HCA Healthcare Inc. Common Stock",
     "industry": "Hospital/Nursing Management",
@@ -1427,6 +1416,17 @@
     "exchange": "S&P 500 constituent",
     "marketCap": 94498574720,
     "universeSource": "S&P 500",
+    "nextEarningsDate": ""
+  },
+  {
+    "symbol": "ADBE",
+    "company": "Adobe Inc. Common Stock",
+    "industry": "Computer Software: Prepackaged Software",
+    "sector": "Technology",
+    "country": "United States",
+    "exchange": "NASDAQ",
+    "marketCap": 93676548000,
+    "universeSource": "S&P 500 + NASDAQ",
     "nextEarningsDate": ""
   },
   {
