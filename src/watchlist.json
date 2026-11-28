@@ -138,7 +138,7 @@
     "sector": "Technology",
     "country": "United States",
     "exchange": "NASDAQ",
-    "marketCap": 1083445623974,
+    "marketCap": 1094454184030,
     "universeSource": "NASDAQ > $10B",
     "nextEarningsDate": ""
   },
@@ -858,17 +858,6 @@
     "nextEarningsDate": ""
   },
   {
-    "symbol": "ADI",
-    "company": "Analog Devices Inc. Common Stock",
-    "industry": "Semiconductors",
-    "sector": "Technology",
-    "country": "United States",
-    "exchange": "NASDAQ",
-    "marketCap": 161411179219,
-    "universeSource": "S&P 500 + NASDAQ",
-    "nextEarningsDate": ""
-  },
-  {
     "symbol": "SCHW",
     "company": "Charles Schwab Corporation (The) Common Stock",
     "industry": "Investment Bankers/Brokers/Service",
@@ -888,6 +877,17 @@
     "exchange": "S&P 500 constituent",
     "marketCap": 160821149539,
     "universeSource": "S&P 500",
+    "nextEarningsDate": ""
+  },
+  {
+    "symbol": "ADI",
+    "company": "Analog Devices Inc. Common Stock",
+    "industry": "Semiconductors",
+    "sector": "Technology",
+    "country": "United States",
+    "exchange": "NASDAQ",
+    "marketCap": 160781926552,
+    "universeSource": "S&P 500 + NASDAQ",
     "nextEarningsDate": ""
   },
   {
@@ -1029,7 +1029,7 @@
     "sector": "Consumer Discretionary",
     "country": "United States",
     "exchange": "S&P 500 constituent",
-    "marketCap": 132195547957,
+    "marketCap": 132194109968,
     "universeSource": "S&P 500",
     "nextEarningsDate": ""
   },
@@ -1832,7 +1832,7 @@
     "sector": "Consumer Discretionary",
     "country": "United States",
     "exchange": "S&P 500 constituent",
-    "marketCap": 78216269037,
+    "marketCap": 77948614072,
     "universeSource": "S&P 500",
     "nextEarningsDate": ""
   },
@@ -2591,7 +2591,7 @@
     "sector": "Technology",
     "country": "United States",
     "exchange": "NASDAQ",
-    "marketCap": 51578065000,
+    "marketCap": 51331280000,
     "universeSource": "S&P 500 + NASDAQ",
     "nextEarningsDate": ""
   },
@@ -4131,7 +4131,7 @@
     "sector": "Utilities",
     "country": "United States",
     "exchange": "S&P 500 constituent",
-    "marketCap": 27587161641,
+    "marketCap": 27592723599,
     "universeSource": "S&P 500",
     "nextEarningsDate": ""
   },
